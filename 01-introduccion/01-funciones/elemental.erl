@@ -212,3 +212,24 @@ extremos(N, L) ->
 
 mediano(X, Y, Z) ->
 	X + Y + Z - lists:min([X, Y, Z]) - lists:max([X, Y , Z]).
+
+%% 16 - Igualdad y diferencia de 3 elementos.
+%% -----------------------------------------------------------------------------
+
+%% 16.1 Definir la función tresIguales tal que (tresIguales x y z) se verifica 
+%% si los elementos x, y y z son iguales. Por ejemplo,
+%%
+%% tresIguales 4 4 4 == true
+%% tresIguales 4 3 4 == false
+
+tresIguales(X, Y, Z) ->
+	(X == Y) and (Y == Z).
+
+%% 16.2 Definir la función tresDiferente tal que (tresDiferentes x y z) se 
+%% verifica si los elementos x, y y z son distintos. Por ejemplo,
+%%
+%% tresDiferentes 3 5 2 == true
+%% tresDiferentes 3 5 3 == false
+
+tresDiferentes(X, Y, Z) ->
+	(X =/= Y) and (Y =/= Z) and (X =/= Z).
