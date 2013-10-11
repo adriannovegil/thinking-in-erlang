@@ -36,3 +36,16 @@ sumaMonedas(A, B, C, D, E) ->
 
 volumenEsfera(R) ->
 	(4 / 3) * math:pi() * math:pow(R, 3).
+
+%% 04 - Área de una corona circular.
+%% -----------------------------------------------------------------------------
+%% definir la función areaDeCoronaCircular tal que (areaDeCoronaCircular r1 r2) 
+%% es el área de una corona circular de radio interior r1 y radio exterior r2. 
+%% Por ejemplo,
+%%
+%% areaDeCoronaCircular 1 2 == 9.42477796076938
+%% areaDeCoronaCiruclar 2 5 == 65.97344572538566
+%% areaDeCoronaCircular 3 5 == 50.26548245743669
+
+areaDeCoronaCircular(R1, R2) ->
+	math:pi() * (math:pow(R2, 2) - math:pow(R1, 2)).
