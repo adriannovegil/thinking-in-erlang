@@ -109,3 +109,26 @@ xor3 (X, Y) ->
 
 xor4 (X, Y) ->
 	X =/= Y.
+
+%% 08 - Rotación de listas.
+%% -----------------------------------------------------------------------------
+
+%% 8.1 - Definir la función rota1 tal que (rota1 xs) es la lista obtenida 
+%% poniendo el primer elemento de xs al final de la lista. Por ejemplo,
+%%
+%% rota1 [2,5,7,3] == [2,5,7,3]
+
+rota([H|T]) ->
+	T ++ [H].
+
+%% 8.2 definir la función rota tal que (rota n xs) es la lista obtenida 
+%% poniendo los n primeros elemntos de xs al final de la lista. por ejemplo,
+%%
+%% rota 1 [3,2,5,7] = [2,5,7,3]
+%% rota 2 [3,2,5,7] = [5,7,3,2]
+%% rota 3 [3,2,5,7] = [7,3,2,5]
+
+rota(N, L) ->
+	%%{[H],[T]} = lists:split(N, L),
+	%%T ++ H.
+	lists:sublist(L, N + 1, length(L)) ++ lists:sublist(L, N).
