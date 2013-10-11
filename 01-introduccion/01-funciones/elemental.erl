@@ -144,3 +144,15 @@ rota(N, L) ->
 
 rango(L) ->
 	[lists:min(L), lists:max(L)].
+
+%% 10 - Reconocimiento de palíndromos.
+%% -----------------------------------------------------------------------------
+%% Definir la función palinddromo tal que (palindromo xs) se verifica si xs es 
+%% un palíndromo; es decir, es lo mismo leer xs de izquierda a derecha que de 
+%% derecha a izquierda. Por ejemplo,
+%%
+%% palindromo [3,2,5,2,3] == true
+%% palindromo [3,2,5,6,2,3] == false
+
+palindromo(L) ->
+	L == lists:reverse(L).
