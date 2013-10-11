@@ -26,3 +26,13 @@ media3(X, Y, Z) ->
 
 sumaMonedas(A, B, C, D, E) ->
 	1 * A + 2 * B + 5 * C + 10 * D + 20 * E.
+
+%% 03 - Volumen de una esfera.
+%% -----------------------------------------------------------------------------
+%% Definir la función volumenEsfera tal que (volumenEsfera r) es el volumen de 
+%% la esfera de radio r. Por ejemplo,
+%%
+%% volumenEsfera 10 == 4188.790204786391
+
+volumenEsfera(R) ->
+	(4 / 3) * math:pi() * math:pow(R, 3).
