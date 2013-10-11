@@ -178,3 +178,14 @@ interior(L) ->
 finales(N, L) ->
 	lists:sublist(L, length(L) - N + 1, length(L)).
 	
+%% 13 - Segmentos de una lista.
+%% -----------------------------------------------------------------------------
+%% Definir la función segmento tal que (segmento m n xs) es la lista de los 
+%% elementos de xs comprendidos entre las posiciones m y n. Por ejemplo,
+%%
+%% segmento 3 4 [3,4,1,2,7,9,0] == [1,2]
+%% segmento 3 5 [3,4,1,2,7,9,0] == [1,2,7]
+%% segmento 5 3 [3,4,1,2,7,9,0] == []
+
+segmento(N, M, L) when M >= N->
+	lists:sublist(L, N, M - N + 1).
