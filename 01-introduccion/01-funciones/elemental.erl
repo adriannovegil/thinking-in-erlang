@@ -59,3 +59,15 @@ areaDeCoronaCircular(R1, R2) ->
 
 ultimaCifra(X) ->
 	X rem 10.
+
+%% 06 - Máximo de 3 elementos.
+%% -----------------------------------------------------------------------------
+%% Definir la función maxTres tal que (maxTres x y z) es el máximo de x, y y z. 
+%% Por ejemplo,
+%%
+%% maxTres 6 2 4 == 6
+%% maxTres 6 7 4 == 7
+%% maxTres 6 7 9 == 9
+
+maxTres(X, Y, Z) ->
+	max(X, max(Y, Z)).
