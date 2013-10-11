@@ -71,3 +71,41 @@ ultimaCifra(X) ->
 
 maxTres(X, Y, Z) ->
 	max(X, max(Y, Z)).
+
+%% 07 - Disyunción excluyente.
+%% -----------------------------------------------------------------------------
+%% La disyunción excluyente xor de dos fórmulas se verifica si una es verdadera 
+%% y la otra es falsa.
+
+%% 7.1 - Definir la función xor1 que calcule la fisyunción excluyente a partir 
+%% de la tabla de verdad. Usar 4 ecuaciones, una por cada línea de la tabla.
+
+xor1(true, true) ->
+	flase;
+xor1(false, true) ->
+	true;
+xor1(true, false) ->
+	true;
+xor1(false, false) ->
+	flase.
+
+%% 7.2 - Definir la función xor2 que calcule la disyunción excluyente a partir 
+%% de la tabla de verdad y patrone. Usar 2 ecuaciones, una por cada valor del 
+%% primer argumento.
+
+xor2(true, Y) ->
+	not Y;
+xor2(false, Y) ->
+	Y.
+
+%% 7.3 - Definir la función xor3 que calcule la disyunción ecluyente a partir 
+%% de la disyunción (||), conjunción (&&) y negación (not). Usar 1 ecuación.
+
+xor3 (X, Y) ->
+	(X or Y) and not (X and Y).
+
+%% 7.4 - Definir la función xor4 que calcule la disyunción excluyente a partir
+%% de la desigualdad (/=). Usar 1 ecuación.
+
+xor4 (X, Y) ->
+	X =/= Y.
