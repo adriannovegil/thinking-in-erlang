@@ -189,3 +189,13 @@ finales(N, L) ->
 
 segmento(N, M, L) when M >= N->
 	lists:sublist(L, N, M - N + 1).
+
+%% 14 - Extremos de una lista.
+%% -----------------------------------------------------------------------------
+%% Definir la función extremos tal que (extremos n xs) es la lista formada por 
+%% los n primeros elementos de xs y los n finales elemntos de xs. Por ejemplo,
+%%
+%% extremos 3 [2,6,7,1,2,4,5,8,9,2,3] == [2,6,7,9,2,3]
+
+extremos(N, L) ->
+	lists:sublist(L, N) ++ lists:sublist(L, length(L) - N + 1, length(L)).
