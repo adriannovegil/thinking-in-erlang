@@ -199,3 +199,16 @@ segmento(N, M, L) when M >= N->
 
 extremos(N, L) ->
 	lists:sublist(L, N) ++ lists:sublist(L, length(L) - N + 1, length(L)).
+
+%% 15 - Mediano de 3 números.
+%% -----------------------------------------------------------------------------
+%% definir la función mediano tal que (mediano x y z) es el número mediano de 
+%% los tres números x,y y z. Por ejemplo,
+%%
+%% mediano 3 2 5 == 3
+%% mediano 2 4 5 == 4
+%% mediano 2 6 5 == 5
+%% mediano 2 6 6 == 6
+
+mediano(X, Y, Z) ->
+	X + Y + Z - lists:min([X, Y, Z]) - lists:max([X, Y , Z]).
