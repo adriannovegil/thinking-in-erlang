@@ -49,3 +49,13 @@ volumenEsfera(R) ->
 
 areaDeCoronaCircular(R1, R2) ->
 	math:pi() * (math:pow(R2, 2) - math:pow(R1, 2)).
+
+%% 05 - Última ficra de un número.
+%% -----------------------------------------------------------------------------
+%% Definirla la función ultimaCifra tal que (ultimaCifra x) es la última cifra 
+%% del número x. Por ejemplo,
+%%
+%% ultimaCifra 325 == 5
+
+ultimaCifra(X) ->
+	X rem 10.
