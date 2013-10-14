@@ -213,3 +213,16 @@ last2([_|T]) -> last2(T).
 
 concat2([]) -> [];
 concat2([H|T]) -> H ++ concat2(T).
+
+%% 11 - Selección de un elemento.
+%% -----------------------------------------------------------------------------
+%% Definir por recursión la función
+%%
+%% selecciona :: [a] -> int -> a
+%%
+%% tal que (selecciona xs n) es el n-ésimo elemento de xs. Por ejemplo,
+%%
+%% selecciona [2,3,5,7] 2 == 5
+
+selecciona([H|_], 1) -> H;
+selecciona([_|T], N) -> selecciona(T, N - 1).
