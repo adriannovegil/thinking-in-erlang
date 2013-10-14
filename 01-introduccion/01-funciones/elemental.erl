@@ -263,3 +263,16 @@ cuatroIguales(X, Y, Z, T) ->
 
 triangular(A, B, C) ->
 	(A < (B + C)) and (B < (A + C)) and (C < (A + B)).
+
+%% 19 - División segura.
+%% -----------------------------------------------------------------------------
+%% Definir la función divisionSegura ral que (divisionsegura x y ) es x/y si y 
+%% no es cero, y 9999 en caso contrario. Por ejemplo,
+%%
+%% divisionSegura 7 2 = 3.5
+%% divisionSegura 7 0 = 9999.0
+
+divisionSegura(_, 0) ->
+	9999;
+divisionSegura(X, Y) ->
+	X / Y.
