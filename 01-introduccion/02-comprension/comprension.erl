@@ -169,3 +169,21 @@ multiplo(X, Y) ->
 
 euler1(N) ->
 	lists:sum([X || X <- lists:seq(1, N - 1), multiplo(X, 3) or multiplo(X, 5)]).
+
+%% 07 - Número de pares de naturales en un círculo.
+%% -----------------------------------------------------------------------------
+%% Definir la función
+%% 
+%% circulo :: Integer -> Integer
+%% 
+%% tal que (circulo n) es la cantidad de pares de números naturales (x, y) que 
+%% se encuentran dentro del círculo de rario n. Por ejemplo,
+%% 
+%% circulo 3 = 9
+%% circulo 4 = 15
+%% circulo 5 = 22
+
+circulo(N) ->
+	length([{X, Y} || X <- lists:seq(0, N), 
+				      Y <- lists:seq(0, N), 
+					  math:pow(X, 2) + math:pow(Y, 2) < math:pow(N, 2)]).
