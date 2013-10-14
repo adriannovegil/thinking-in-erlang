@@ -77,3 +77,44 @@ dobleFactorial(N) -> N * dobleFactorial(N - 2).
 
 mcd(A,0) -> A;
 mcd(A,B) -> mcd(B, A rem B).
+
+%% 05 - Menor número divisible por una sucesión de números.
+%% -----------------------------------------------------------------------------
+%% Los siguientes ejercicios tienen como objetivo resolver el problema 5 del
+%% proyecto Euler que consiste en calcular el menor número divisible por los 
+%% números del 1 al 20.
+
+%% 5.1 - Definir por recursión la función
+%%
+%% menorDivisible :: int -> int - int
+%%
+%% tal que (menorDivisible a b) es el menor número divisible por los números
+%% del a al b. Por ejemplo,
+%%
+%% menorDivisible 2 5 == 60
+%%
+%% Indicación: Usar la función lcm tal que (lcm x y) es el mínimo común múltiplo
+%% de x e y.
+
+gcd(A, 0) -> A;
+gcd(A, B) -> gcd(B, A rem B).
+ 
+lcm(A,B) -> abs(A * B div gcd(A,B)).
+
+menorDivisible(A, B) ->
+	if
+		A == B ->
+			A;
+		true ->
+			lcm(A, menorDivisible(A + 1, B))
+	end.
+
+%% 5.2 - Definir la constante
+%%
+%% euler5 :: int
+%%
+%% tal que euler5 es el menor número divisible por los números del 1 al 20 y 
+%% calcular su valor.
+
+euler5() ->
+	menorDivisible(1,20).
