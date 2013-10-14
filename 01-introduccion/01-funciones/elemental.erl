@@ -428,3 +428,14 @@ intercala([L1|T1], [L2|T2]) ->
 
 ciclo(L) ->
 	[lists:last(L)] ++ lists:sublist(L,length(L) - 1).
+
+%% 26 - Mayor número de 2 cifras con dos dígitos dados.
+%% -----------------------------------------------------------------------------
+%% Definir la función numeroMayor tal que (numeroMayor x y) es el mayor número 
+%% de dos cifras que puede construirse con los dígitos x e y. Por ejemplo,
+%%
+%% numeroMayor 2 5 == 52
+%% numeroMayor 5 2 == 52
+
+numeroMayor(X, Y) ->
+	lists:max([X, Y]) * 10 + lists:min([X, Y]).
