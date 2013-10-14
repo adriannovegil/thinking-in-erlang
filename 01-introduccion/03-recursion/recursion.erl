@@ -165,3 +165,23 @@ numPasosHanoi(N) -> 1 + 2 * numPasosHanoi(N - 1).
 
 and2([]) -> true;
 and2([H|T]) -> H and and2(T).
+
+%% 08 - Pertenencia a una lista.
+%% -----------------------------------------------------------------------------
+%% Definir por recursión la función
+%%
+%% elem2 :: a -> [a] -> bool
+%%
+%% tal que (elem2 x xs) se verifica si x pertenece a la lista xs. Por ejemplo,
+%%
+%% elem2 3 [2,3,5] == true
+%% elem2 4 [2,3,5] == false
+
+elem2(_, []) -> false;
+elem2(N, [H|T]) -> 
+	if 
+		N == H ->
+			true;
+		true -> 
+			elem2(N, T)
+	end.
