@@ -439,3 +439,23 @@ ciclo(L) ->
 
 numeroMayor(X, Y) ->
 	lists:max([X, Y]) * 10 + lists:min([X, Y]).
+
+%% 27 - Número de raíces de una ecuación cuadrática.
+%% -----------------------------------------------------------------------------
+%% Definir la función numeroDeRaices tal que (numeroDeRaices a b c) es el número 
+%% de raíces reales de la ecuación ax^2+bx+c = 0. Por ejemplo,
+%%
+%% numeroDeRaices 2 0 3 == 0
+%% numeroDeRaices 4 4 1 == 1
+%% numeroDeRaices 5 23 12 == 2
+
+numeroDeRaices(A, B, C) ->
+	D = math:pow(B, 2) - 4 * A * C,
+	if
+		D < 0 ->
+			0;
+		D == 0 ->
+			1;
+		true -> 
+			2
+	end.
