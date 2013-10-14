@@ -508,3 +508,22 @@ busca2(X,L) ->
 
 posiciones2(X, Xs) ->
 	busca2(X, lists:zip(Xs, lists:seq(1,length(Xs)))).
+
+%% 16 - Representación densa de un polinomio representado dispersamente.
+%% -----------------------------------------------------------------------------
+%% Los polinomios pueden representarse de forma dispersa o densa. Por ejemplo, 
+%% el polinomio 6x^4 - 5x^2 + 4x - 7 se puede representar de forma dispersa por
+%% [6,0,-5,4,-7] y de forma densa por [(4,6),(2,-5),(1,4),(0,-7)]. Definir la
+%% función
+%%
+%% densa :: [int] -> [(int, int)]
+%%
+%% tal que (densa xs) es la representación densa del polinomio cuya 
+%% representación dispersa es xs. Por ejemplo,
+%%
+%% densa [6,0,-5,4,-7] == [(4,6),(2,-5),(1,4),(0,-7)]
+%% densa [6,0,0,3,0,4] == [(5,6),(2,3),(0,4)]
+
+densa(Xs) ->
+	[ {X,Y} || {X,Y} <- lists:zip(lists:reverse(
+		lists:seq(0, length(Xs) - 1)), Xs), Y /= 0 ].
