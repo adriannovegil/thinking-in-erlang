@@ -233,3 +233,16 @@ tresIguales(X, Y, Z) ->
 
 tresDiferentes(X, Y, Z) ->
 	(X =/= Y) and (Y =/= Z) and (X =/= Z).
+
+%% 17 - Igualdad de 4 elementos.
+%% -----------------------------------------------------------------------------
+%% Definir la función cuatroIguales tal que (cuatroIguales x y z u) se verifica 
+%% si los elementos x, y, z y u son iguales. Por ejemplo,
+%%
+%% cuatroIguales 5 5 5 5 == true
+%% cuatroIguales 5 5 4 5 == false
+%%
+%% Indicación: Usar la función tresIguales.
+
+cuatroIguales(X, Y, Z, T) ->
+	(X == Y) and tresIguales(Y, Z, T).
