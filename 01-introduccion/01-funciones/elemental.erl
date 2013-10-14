@@ -459,3 +459,21 @@ numeroDeRaices(A, B, C) ->
 		true -> 
 			2
 	end.
+
+%% 28 - Raíces de las ecuaciones cuadráticas.
+%% -----------------------------------------------------------------------------
+%% Definir la función raices de forma que (raices a b c) devuelve la lista de 
+%% las raices reales de la ecuación ax^2+bx+c = 0. Por ejemplo,
+%%
+%% raices 1 (-2) 1 == [1.0,1.0]
+%% raices 1 3 2 == [-1.0,-2.0]
+
+raices(A, B, C) ->
+	D = math:pow(B, 2) - 4 * A * C,
+	if
+		D >= 0 ->
+			E = math:sqrt(D),
+			[(-B + E)/(2 * A), (-B - E) / (2 * A)];
+		true -> 
+			"No tiene raices reales"
+	end.
