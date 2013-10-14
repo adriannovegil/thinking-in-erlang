@@ -372,3 +372,36 @@ distancia(X1, Y1, X2, Y2) ->
 
 puntoMedio(X1, Y1, X2, Y2) ->
 	[(X1 + X2)/2,(Y1 + Y2)/2].
+
+%% 23 - Números complejos.
+%% -----------------------------------------------------------------------------
+%% Los números complejos pueden representarse mediante pares de números 
+%% complejos. por ejemplo, el número 2+5i puede representarse mediante el par 
+%% (2,5).
+
+%% 23.1 - Suma de dos números complejos
+%% Definir la función sumaComplejos ral que (sumaComplejos x y) es la suma de 
+%% los números complejos x e y. Por ejemplo,
+%%
+%% sumaComplejos (2,3) (5,6) == (7,9)
+
+sumaComplejos(A, B, C, D) ->
+	[A + C, B + D].
+
+%% 23.2 - Producto de dos números complejos
+%% Definir la función productoComplejos tal que (productoComplejos x y) es el 
+%% producto de los números complejos x e y. Por ejemplo,
+%%
+%% productoComplejos (2,3) (5,6)
+
+productoComplejos(A, B, C, D) ->
+	[A * C - B * D, A * D + B * C].
+
+%% 23.3 - Conjugado de un número complejo
+%% Definir la función conjugado tal que (conjugado z) es el conjugado del 
+%% número complejo z. Por ejemplo,
+%%
+%% conjugado (2,3) == (2,-3)
+
+conjugado(A, B) ->
+	[A, B * -1].
