@@ -413,3 +413,33 @@ conjetura(N) ->
 %% Caso 3: x es impar e y es par. Análogo al caso 2.
 %% Caso 4: x e y son impares. Entonces x^2 e y^2 también son impares y z^2 es
 %% par. Luego el número de componentes pares es 1 impar.
+
+%% 12 - Problema 9 del Proyecto Euler.
+%% -----------------------------------------------------------------------------
+
+%% 12.1 - Una terna pitagórica es una terna de números naturales (a,b,c) tal que 
+%% a < b < c y a^2 + b^2 = c^2. Por ejemplo (3,4,5) es una terna pitagórica.
+%% Definir la función
+%%
+%% ternasPitagoricas :: int -> [[int]]
+%%
+%% tal que (ternasPitagoricas x) es la lista de las ternas pitagóricas cuya 
+%% suma es x. Por ejemplo,
+%%
+%% ternasPitagoricas 12 = [(3,4,5)]
+%% ternasPitagoricas 60 = [(10,24,26), (15,20,25)]
+
+ternasPitagoricas(X) ->
+	[[A,B,C] || A <- lists:seq(1, X), 
+			    B <- lists:seq(A + 1, X), 
+		    	C <- [X - A - B],
+		    	math:pow(A, 2) + math:pow(B, 2) == math:pow(C, 2)
+	].
+
+%% 12.2 - Definir la constante euler9 tal que euler9 es producto a*b*c donde 
+%% (a,b,c) es la única terna pitagórica tal que a + b + c = 1000. Calcular el 
+%% valor euler9.
+
+euler9() ->
+	[H|_] = ternasPitagoricas(1000),
+	lists:foldl(fun(X, Producto) -> X * Producto end, 1, H).
