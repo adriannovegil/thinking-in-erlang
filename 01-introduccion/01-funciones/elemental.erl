@@ -491,3 +491,54 @@ raices(A, B, C) ->
 area(A, B, C) ->
 	S = (A + B + C) / 2,
 	math:sqrt(S * (S - A) * (S - B) * (S - C)).
+
+%% 30 - Números racionales como pares de enteros.
+%% -----------------------------------------------------------------------------
+%% Los números racionales pueden representarse mediante pares de números 
+%% enteros. Por ejemplo, el número 2/5 puede representarse mediante el par (2,5)
+
+%% Función para el cálculo de mínimo como un divisor
+
+gcd(0,B) -> abs(B);
+gcd(A,0) -> abs(A);
+gcd(A,B) when A > B -> gcd(B, A rem B);
+gcd(A,B) -> gcd(A, B rem A).
+
+%% 30.1 - Forma reducida de un número racional.
+%% Definir la función formaReducida ral que (formaReducida x) es la forma 
+%% reducida del número racional x. Por ejemplo,
+%%
+%% formaReducida (4,10) == (2,5)
+
+formaReducida(A, B) ->
+	C = gcd(A, B),
+	[A div C, B div C].
+
+%% 30.2 - Suma de dos números racionales.
+%% Definir la función sumaRacional tal que (sumaRacional x y) es la suma de 
+%% los números racionales x e y. Por ejemplo,
+%%
+%% sumaRacional (2,3) (5,6) == (3,2)
+
+sumaRacional(X1, Y1, X2, Y2) ->
+	formaReducida( X1 * Y2 + Y1 * X2, Y1 * Y2).
+
+%% 30.3 - Producto de dos números racionales.
+%% Definir la función productoRacional tal que (productoRacional x y) es el 
+%% producto de los números racionales x e y. Por ejemplo,
+%%
+%% productoRacional (2,3) (5,6) == (5,9)
+
+productoRacional(X1, Y1, X2, Y2) ->
+	formaReducida(X1 * X2, Y1 * Y2).
+
+%% 30.4 - Igualdad de números racionales.
+%% Definir la función igualdadRacional tal que (igualdadRacional x y) se 
+%% verifica si los números racionales x e y son iguales. Por ejemplo,
+%%
+%% igualdadRacional (6,9) (10,15) == true
+%% igualdadRacional (6,9) (11,15) == false
+
+igualdadRacional(X1, Y1, X2, Y2) ->
+	formaReducida(X1, Y1) == formaReducida(X2, Y2).
+
