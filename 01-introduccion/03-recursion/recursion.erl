@@ -241,3 +241,20 @@ selecciona([_|T], N) -> selecciona(T, N - 1).
 take2(0, _) -> [];
 take2(_, []) -> [];
 take2(N, [H|T]) -> [H] ++ take2(N - 1, T).
+
+%% 13 - Intercalación de la media aritmética.
+%% -----------------------------------------------------------------------------
+%% Definir la función
+%%
+%% refinada :: [float] -> [float]
+%%
+%% tal que (refinada xs) es la lista obtenida intercalando entre cada dos 
+%% elementos consecutivos de xs su media aritmética. Por ejemplo,
+%%
+%% refinada [2,7,1,8] == [2.0,4.5,7.0,4.0,1.0,4.5,8.0]
+%% refinada [2] == [2.0]
+%% refinada [] == []
+
+refinada([]) -> [];
+refinada([H|[]]) -> [H];
+refinada([X|[Y|T]]) -> [X] ++ [(X + Y) / 2] ++ refinada([Y]++T).
