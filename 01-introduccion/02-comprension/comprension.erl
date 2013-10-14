@@ -152,3 +152,20 @@ primerAbundanteImparHelper(Init, Fin) ->
 
 primerAbundanteImpar() -> 
 	primerAbundanteImparHelper(1, 10).
+
+%% 06 - Problema 1 del Proyecto Euler.
+%% -----------------------------------------------------------------------------
+%% Definir la función
+%% 
+%% euler1 :: Integer -> Integer
+%% 
+%% tal que (euler1 n) es la suma de todos los múltiplos de 3 ó 5 menores que n.
+%% Por ejemplo,
+%% 
+%% euler1 10 == 23
+
+multiplo(X, Y) ->
+	X rem Y == 0.
+
+euler1(N) ->
+	lists:sum([X || X <- lists:seq(1, N - 1), multiplo(X, 3) or multiplo(X, 5)]).
