@@ -187,3 +187,89 @@ circulo(N) ->
 	length([{X, Y} || X <- lists:seq(0, N), 
 				      Y <- lists:seq(0, N), 
 					  math:pow(X, 2) + math:pow(Y, 2) < math:pow(N, 2)]).
+
+%% 08 - Aproximación del número e.
+%% -----------------------------------------------------------------------------
+ 
+%% 8.1 - Definir la función aproxE tal que (aproxE n) es la lista cuyos 
+%% elementos son los términos de la sucesión (1 + 1/m )^m desde 1 hasta n. Por 
+%% ejemplo,
+%% 
+%% aproxE 1 == [2.0]
+%% aproxE 4 == [2.0, 2.25, 2.37037037037037, 2.44140625]
+
+aproxE(N) ->
+	[math:pow((1 + 1/M),M) || M <- lists:seq(1,N)].
+
+%% 8.2 - Cual es el límite de la sucesión (1 + 1/m )^m?
+
+%% Solución: El límite de la sucesión, cuando n tiende a infinito, es el 
+%% número e.
+
+%% 8.3 - Definir la función errorR tal que (errorAproxE x) es el menor número 
+%% de términos de la sucesión (1 + 1/m )^m necesarios para obtener su límite 
+%% con un error menor que x.
+%% Por ejemplo,
+%% 
+%% errorAproxE 0.1 == 13.0
+%% errorAproxE 0.01 == 135.0
+%% errorAproxE 0.001 == 1359.0
+%%
+%% Indicación: En Erlang, e se calcula como math:exp(1).
+
+errorAproxEHelper(X, Init, Fin) ->
+	Tmp = [M || M <- lists:seq(Init, Fin), 
+		abs((math:exp(1) - (math:pow(1 + 1 / M, M)))) < X],
+	if
+		length(Tmp) > 0 ->
+			lists:nth(1, Tmp);
+		true ->
+			errorAproxEHelper(X, Fin + 1, Fin + 10)
+	end.
+
+errorAproxE(X) ->
+	errorAproxEHelper(X, 1, 10).
+
+%% 8.4 - El número e también se puede definir como la suma de la siere:
+%%
+%% 1/0! + 1/1! + 1/2! + 1/3! + ...
+%%
+%% Definir la función aproxE2 tal que (aproxE2 n) es la aproximación de e que
+%% se obtiene sumando los términos de la serie hasta 1/n!. Por ejemplo,
+%% 
+%% aproxE2 10 = 2.718281801146385
+%% aproxE2 100 = 2.7182818284590455
+
+factorial(0) ->
+	1;
+factorial(X) ->
+	X * factorial(X - 1).
+
+aproxE2(N) ->
+	1 + lists:sum([1 / factorial(K) || K <- lists:seq(1, N)]).
+
+%% 8.5 - Definir la constante e como 2,71828459.
+
+%% Solución: E = 2.71828459.
+
+%% 8.6 - Definir la función errorAproxE2 tal que (errorAproxE2 x) es el menor 
+%% número de términos de la serie anterior necesarios para obtener e con un 
+%% error menor que x. Por ejemplo,
+%%
+%% errorAproxE2 0.1 == 3.0
+%% errorAproxE2 0.01 == 4.0
+%% errorAproxE2 0.001 == 6.0
+%% errorAproxE2 0.0001 == 7.0
+
+errorAproxE2Helper(X, Init, Fin) ->
+	Tmp = [M || M <- lists:seq(Init, Fin), 
+		abs((aproxE2(M) - math:exp(1))) < X],
+	if
+		length(Tmp) > 0 ->
+			lists:nth(1, Tmp);
+		true ->
+			errorAproxEHelper(X, Fin + 1, Fin + 10)
+	end.
+
+errorAproxE2(X) ->
+	errorAproxE2Helper(X, 1, 10).
