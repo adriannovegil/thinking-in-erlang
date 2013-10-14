@@ -286,3 +286,24 @@ divisionSegura(X, Y) ->
 
 modulo(X, Y) ->
 	math:sqrt(math:pow(X,2) + math:pow(Y, 2)).
+
+%% 21 - Rectángulo de área máxima.
+%% -----------------------------------------------------------------------------
+%% Las dimensiones de los rectángulos pueden representarse por pares; por 
+%% ejemplo, (5,3) representa a un rectángulo de base 5 y altura 3. Definir la 
+%% función mayorRectangulo tal que (mayorRectangulo r1 r2) es el rectángulo de 
+%% mayor área entre r1 y r2. Por ejemplo,
+%%
+%% mayorRectangulo (4,6) (3,7) == (4,6)
+%% mayorRectangulo (4,6) (3,8) == (4,6)
+%% mayorRectangulo (4,6) (3,9) == (3,9)
+
+mayorRectangulo(A, B) ->
+	F = fun(X, Multiplica) -> Multiplica * X end,
+	X = lists:foldl(F, 1, A),
+	Y = lists:foldl(F, 1, B),
+	if X >= Y ->
+		A;
+	true ->
+		B
+	end.
