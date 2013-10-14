@@ -405,3 +405,14 @@ productoComplejos(A, B, C, D) ->
 
 conjugado(A, B) ->
 	[A, B * -1].
+
+%% 24 - Intercalación de pares.
+%% -----------------------------------------------------------------------------
+%% Definir la función intercala que reciba dos listas xs e ys de dos elementos 
+%% cada una, y devuelva una lista de cuatro elementos, construida intercambiando 
+%% los elementos de xs e ys. Por ejemplo,
+%%
+%% intercala [1,4] [3,2] == [1,3,4,2] 
+
+intercala([L1|T1], [L2|T2]) ->
+	[L1] ++ [L2] ++ T1 ++ T2.
