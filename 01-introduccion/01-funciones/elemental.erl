@@ -246,3 +246,20 @@ tresDiferentes(X, Y, Z) ->
 
 cuatroIguales(X, Y, Z, T) ->
 	(X == Y) and tresIguales(Y, Z, T).
+
+%% 18 - Propiedad triangular.
+%% -----------------------------------------------------------------------------
+%% Las longitudes de los lados de un triángulo no pueden ser cualesquiera. Para 
+%% que pueda construirse el triángulo, triene que cumplirse la propiedad 
+%% triangular; es decir, longitud de cada lado tiene que se menor que la suma de 
+%% los otros dos lados.
+%% Definir la función triangular tal que (triangular a b c) se verifica si a, b 
+%% y c cumplen la propiedad triangular. Por ejemplo,
+%%
+%% triangular 3 4 5 == true
+%% triangular 30 4 5 == false
+%% triangular 3 40 5 == false
+%% triangular 3 4 50 == false
+
+triangular(A, B, C) ->
+	(A < (B + C)) and (B < (A + C)) and (C < (A + B)).
