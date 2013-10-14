@@ -459,3 +459,19 @@ euler9() ->
 
 productoEscalar(Xs, Ys) ->
 	lists:sum([ X * Y || {X,Y} <- lists:zip(Xs, Ys)]).
+
+%% 14 - Suma de pares de elementos consecutivos.
+%% -----------------------------------------------------------------------------
+%% Definir por comprensión, la función
+%%
+%% sumaConsecutivos :: [int] -> [int]
+%%
+%% tal que (sumaConsecutivos xs) es la suma de los pares de elementos 
+%% consecutivos de la lista xs. Por ejemplo,
+%%
+%% sumaConsecutivos [3,1,5,2] == [4,6,7]
+%% sumaConsecutivos [3] == []
+
+sumaConsecutivos([H|T] = Xs) ->
+	Suma = [X + Y || {X,Y} <- lists:zip(Xs, T ++ [H])],
+	lists:sublist(Suma,1,length(Suma)-1).
