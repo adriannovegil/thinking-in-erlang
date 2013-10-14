@@ -150,3 +150,18 @@ euler5() ->
 
 numPasosHanoi(1) -> 1;
 numPasosHanoi(N) -> 1 + 2 * numPasosHanoi(N - 1).
+
+%% 07 - Conjunción de una lista.
+%% -----------------------------------------------------------------------------
+%% Definir por recursión la función
+%%
+%% and2 :: [bool] -> bool
+%%
+%% tal que (and2 xs) se verifica si todos los elementos de xs son verdadero. Por
+%% ejemplo,
+%%
+%% and2 [1+2 < 4, 2:[3] == [2,3]] == true
+%% and2 [1+2 < 3, 2:[3] == [2,3]] == false
+
+and2([]) -> true;
+and2([H|T]) -> H and and2(T).
