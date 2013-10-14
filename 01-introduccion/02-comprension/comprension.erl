@@ -312,3 +312,44 @@ errorLimSenoHelper(X, Init, Fin) ->
 
 errorLimSeno(X) ->
 	errorLimSenoHelper(X, 1, 10).
+
+%% 10 - Cálculo del número pi.
+%% -----------------------------------------------------------------------------
+
+%% 10.1 - definir la función calculaPi tal que (calculaPi n) es la aproximación
+%% del número pi calculada mediante la expresión
+%%
+%% 4 * (1 - 1/3 + 1/5 - 1/7 + ... + (-1)^n/(2n+1))
+%%
+%% Por ejemplo,
+%%
+%% calculaPi 3 == 2.8952380952380956
+%% calculaPi 300 == 3.1449149035588526
+
+calculaPi(N) ->
+	4 * lists:sum([math:pow(-1, X)/(2*X+1) || X <- lists:seq(0,N)]).
+
+%% 10.2 - Definir la función errorPi tal que (errorPi x) es el menor número de 
+%% términos de la serie
+%%
+%% 4 * (1 - 1/3 + 1/5 - 1/7 + ... + (-1)^n/(2n+1))
+%%
+%% necesarios para obtener pi con un error menor que x. Por ejemplo,
+%%
+%% errorPi 0.1 == 9.0
+%% errorPi 0.01 == 99.0
+%% errorPi 0.001 == 999.0
+
+errorPiHelper(X, Init, Fin) ->
+	Tmp = 
+		[M || M <- lists:seq(Init, Fin), 		
+		abs(math:pi() - calculaPi(M)) < X],
+	if
+		length(Tmp) > 0 ->
+			lists:nth(1, Tmp);
+		true ->
+			errorPiHelper(X, Fin + 1, Fin + 10)
+	end.
+
+errorPi(X) ->
+	errorPiHelper(X, 1, 10).
