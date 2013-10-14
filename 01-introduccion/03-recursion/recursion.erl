@@ -118,3 +118,35 @@ menorDivisible(A, B) ->
 
 euler5() ->
 	menorDivisible(1,20).
+
+%% 06 - Número de pasos para resolver el problema de las torres de Hanoi.
+%% -----------------------------------------------------------------------------
+%% En un templo hindú se encuentran tres varillas de platino. En una de ellas, 
+%% hay 64 anillos de oro de distintos radios, colocados de mayor a menor.
+%% El trabajo de los monjes de ese templo consiste en pasarlos todos a la 
+%% tercera varilla, usando la segunda varilla auxiliar, con las siguientes 
+%% condiciones:
+%% - En casa paso sólo se puede mover un anillo.
+%% - Nunca puede haber un anillo de mayor diámetro encima de uno de menor 
+%% diámetro.
+%% La leyenda dice que cuando todos los anillos se encuentren en la tercera 
+%% varilla, será el fín del mundo.
+%% Definir la función
+%%
+%% numPasosHanoi :: int -> int
+%%
+%% tal que (numPasosHanoi n) es el número de pasos necesarios para trasladar n
+%% anillos. Por ejemplo,
+%%
+%% numPasosHanoi 2 == 3
+%% numPasosHanoi 7 == 127
+%% numPasosHanoi 64 == 18446744073709551615
+
+%% Solución: Sean A, B y C las tres varillas. La estrategia recursiva es la
+%% siguiente:
+%% - Caso base (n = 1): Se mueve el disco de A a C.
+%% - Caso inductivo (n = m + 1): Se mueven m discos de A a C. Se mueve el disco
+%% de A a B. Se mueven m discos de C a B.
+
+numPasosHanoi(1) -> 1;
+numPasosHanoi(N) -> 1 + 2 * numPasosHanoi(N - 1).
