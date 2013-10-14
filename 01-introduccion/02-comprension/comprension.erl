@@ -92,3 +92,63 @@ factores(N) ->
 
 perfectos(N) ->
 	[X || X <- lists:seq(1, N), (lists:sum(factores(X) -- [X]) == X)].
+
+%% 05 - Números abundantes.
+%% -----------------------------------------------------------------------------
+%% Un número natural n se denomina abundante si es menor que la suma de sus 
+%% divisores propios. Por ejemplo, 12 y 30 son abundantes pero 5 y 28 no lo son.
+
+%% 5.1 - Definir una función numeroAbundante tal que (numeroAbundante n) se 
+%% verifica si n es un número abundante. Por ejemplo,
+%% 
+%% numeroAbundante 5 == False
+%% numeroAbundante 12 == True
+%% numeroAbundante 28 == False
+%% numeroAbundante 30 == True
+
+divisores(N) ->
+	[X || X <- lists:seq(1, N - 1), N rem X == 0].
+
+numeroAbundante(N) ->
+	N < lists:sum(divisores(N)).
+
+%% 5.2 - Definir una función numerosAbundantesMenores tal que 
+%% (numerosAbundantesMenores n) es la lista de número abundantes menores o 
+%% iguales que n. Por ejemplo,
+%%
+%% numerosAbundantesMenores 50 = [12,18,20,24,30,36,40,42,48]
+
+numerosAbundantesMenores(N) ->
+	[X || X <- lists:seq(1, N), numeroAbundante(X)].
+
+%% 5.3 - Definir la función todosPares tal que (todosPares n) se verifica si 
+%% todos los números abundantes menores o iguales que n son pares. Por 
+%% ejemplo,
+%%
+%% todosPares 10 = True
+%% todosPares 100 = True
+%% todosPares 1000 = False
+
+todosPares(N) ->
+	lists:all( fun(X) ->
+		if
+			X rem 2 == 0-> true;
+			true -> false
+		end
+	end, numerosAbundantesMenores(N)).
+
+
+%% 5.4 - Definir la constante primerAbundanteImpar que calcule el primer número 
+%% natural abundante impar. Determinar el valor de dicho número.
+
+primerAbundanteImparHelper(Init, Fin) -> 
+	Impares = [X || X <- lists:seq(Init,Fin), numeroAbundante(X) and ((X rem 2) /= 0)],
+	if
+		length(Impares) > 0 ->
+			lists:nth(1, Impares);		
+		true ->
+			primerAbundanteImparHelper(Fin + 1, Fin + 100)
+	end.
+
+primerAbundanteImpar() -> 
+	primerAbundanteImparHelper(1, 10).
