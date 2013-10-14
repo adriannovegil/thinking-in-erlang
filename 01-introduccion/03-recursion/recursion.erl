@@ -199,3 +199,17 @@ elem2(N, [H|T]) ->
 last2([]) -> "Nice try";
 last2([H]) -> H;
 last2([_|T]) -> last2(T).
+
+%% 10 - Concatenación de una lista.
+%% -----------------------------------------------------------------------------
+%% Definir por recursión la función
+%%
+%% concat2 :: [[a]] -> [a]
+%%
+%% tal que (concat2 xss) es la lista obtenida concatenando las listas de xss. 
+%% Por ejemplo,
+%%
+%% concat2 [[1..3],[5..7],[8..10]] == [1,2,3,5,6,7,8,9,10]
+
+concat2([]) -> [];
+concat2([H|T]) -> H ++ concat2(T).
