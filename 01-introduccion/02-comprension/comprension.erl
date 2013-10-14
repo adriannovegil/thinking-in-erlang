@@ -16,3 +16,17 @@
 
 sumaDeCuadrados(N) ->
 	lists:sum([ math:pow(X, 2) || X <- lists:seq(1,N)]).
+
+%% 02 - Listas con un elemento replicado.
+%% -----------------------------------------------------------------------------
+%% Definir por comprensión la función
+%%
+%% replica :: Int -> a -> [a]
+%%
+%% tal que (replica n x) es la lista formada por n copias del elemento x. Por 
+%% ejemplo,
+%%
+%% replica 3 true == [true, true, true]
+
+replica(N, X) ->
+	[ X || _ <- lists:seq(1,N)].
