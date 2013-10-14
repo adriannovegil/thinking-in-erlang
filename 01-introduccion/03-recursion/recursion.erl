@@ -258,3 +258,102 @@ take2(N, [H|T]) -> [H] ++ take2(N - 1, T).
 refinada([]) -> [];
 refinada([H|[]]) -> [H];
 refinada([X|[Y|T]]) -> [X] ++ [(X + Y) / 2] ++ refinada([Y]++T).
+
+%% 14 - Ordenación por mezcla.
+%% -----------------------------------------------------------------------------
+
+%% 14.1 - Definir por recursión la función
+%%
+%% mezcla :: [a] -> [a] -> [a]
+%%
+%% tal que (mezcla xs ys) es la lista obtenida mezclando la listas ordenadas xs
+%% e ys. Por ejemplo,
+%%
+%% mezcla [2,5,6] [1,3,4] == [1,2,3,4,5,6]
+
+mezcla([], Ys) -> Ys;
+mezcla(Xs, []) -> Xs;
+mezcla([X|Xs], [Y|Ys]) -> 
+	if
+		X =< Y  ->
+			[X] ++ mezcla(Xs, [Y] ++ Ys);
+		true ->
+			[Y] ++ mezcla([X] ++ Xs, Ys)
+	end.
+
+%% 14.2 Definir la función
+%%
+%% mitades :: [a] -> ([a],[a])
+%%
+%% tal que (mitades xs) es el par formado por las dos mitades en que se divide 
+%% xs tales que sus longitudes difieren como máximo en uno. Por ejemplo,
+%%
+%% mitades [2,3,5,7,9] == ([2,3], [5,7,9])
+
+mitades(Xs) ->
+	lists:split(length(Xs) div 2, Xs).
+
+%% 14.3 Defirnir por recusión la función
+%%
+%% ordMezcla :: [a] -> [a]
+%%
+%% tal que (ordMezcla xs) es la lista obtenida ordenando xs por mezcla (es 
+%% decir, considerando que la lista vacía y las listas unitarias están ordenadas 
+%% y cualquier otra lista se ordena mezclando las dos listas que resultan de 
+%% ordenar sus dos mitades por separado). Por ejemplo,
+%%
+%% ordMezcla [5,2,3,1,7,2,5] == [1,2,2,3,5,5,7]
+
+ordMezcla([]) -> [];
+ordMezcla([X]) -> [X];
+ordMezcla(L) -> 
+	{Xs,Ys} = mitades(L),
+	mezcla(ordMezcla(Xs), ordMezcla(Ys)).
+
+%% 14.4 - Definir por recursión la función
+%%
+%% ordenada :: [a] -> bool
+%%
+%% tal que (ordenada xs) se verifica si xs es una lista ordenada. Por ejemplo,
+%%
+%% ordenada [2,3,5] == true
+%% ordenada [2,5,3] == false
+
+ordenada(Ls) ->
+	Ls == ordMezcla(Ls).
+
+%% 14.5 - Definir por recursión la función
+%%
+%% borra :: [a] -> [a]
+%%
+%% tal que (borra x xs) es la lista obtenida borrando una ocurrenia de x en la 
+%% lista xs. Por ejemplo, 
+%%
+%% borra 1 [1,2,1] == [2,1]
+%% borra 3 [1,2,1] == [1,2,1]
+
+borra(_, []) -> [];
+borra(X, [H|T]) -> 
+	if
+		X == H ->
+			T;
+		true -> 
+			[H] ++ borra(X, T)
+	end.
+
+%% 14.6 - Definir por recursión la función
+%%
+%% esPermutación :: [a] -> [a] -> bool
+%%
+%% tal que (esPermutacion xs ys) se verifica si xs es una permutación de ys. Por
+%% ejemplo,
+%%
+%% esPermutacion [1,2,1] [2,1,1] == true
+%% esPermutación [1,2,1] [1,2,2] == false
+
+esPermutacion([], []) -> true;
+esPermutacion([], _) -> false;
+esPermutacion(_, []) -> false;
+esPermutacion([X|Xs], Ys) -> 
+		lists:member(X, Ys) and  esPermutacion(Xs, borra(X, Ys)).
+
