@@ -475,3 +475,36 @@ productoEscalar(Xs, Ys) ->
 sumaConsecutivos([H|T] = Xs) ->
 	Suma = [X + Y || {X,Y} <- lists:zip(Xs, T ++ [H])],
 	lists:sublist(Suma,1,length(Suma)-1).
+
+%% 15 - Posiciones de un elemento en una lista.
+%% -----------------------------------------------------------------------------
+%% En el tema se ha definido la función
+%%
+%% posiciones :: Eq a -> a -> [a] -> [int]
+%% 
+%% tal que (posiciones x xs) es la lista de las posiciones ocupadas por el 
+%% elemento x en la lista. Por ejemplo,
+%%
+%% posiciones 5 [1,5,3,5,5,7] == [1,3,4]
+%%
+%% Definir, usando la función busca (definida más abajo), la función
+%%
+%% posiciones2 :: a -> a -> [a] -> [int]
+%%
+%% tal que posiciones 2 sea equivalente a posiciones
+
+%% Función (busca x ys) es la segunda componente del primer par de ys cuya
+%% primera componente sea igual a x.
+
+busca(X,L) ->
+	[H|_] = [ V || {X2, V} <- L, X2 == X],
+	H.
+
+%% Modificamos la función busca para que retorne solamente la primera 
+%% coincidencia, si no todas las que encuentre.
+
+busca2(X,L) ->
+	[ V || {X2, V} <- L, X2 == X].
+
+posiciones2(X, Xs) ->
+	busca2(X, lists:zip(Xs, lists:seq(1,length(Xs)))).
