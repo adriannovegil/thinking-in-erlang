@@ -416,3 +416,15 @@ conjugado(A, B) ->
 
 intercala([L1|T1], [L2|T2]) ->
 	[L1] ++ [L2] ++ T1 ++ T2.
+
+%% 25 - Permutación cíclica de una lista.
+%% -----------------------------------------------------------------------------
+%% Definir una función ciclo que permute cíclicamente los elementros de una 
+%% lista, pasando el último elemento al principio de la lista. Por ejemplo,
+%%
+%% ciclo [2,5,7,9] == [9,2,5,7]
+%% ciclo [] == []
+%% ciclo [2] == [2]
+
+ciclo(L) ->
+	[lists:last(L)] ++ lists:sublist(L,length(L) - 1).
