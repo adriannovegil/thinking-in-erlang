@@ -307,3 +307,68 @@ mayorRectangulo(A, B) ->
 	true ->
 		B
 	end.
+
+%% 22 - Puntos de plano.
+%% -----------------------------------------------------------------------------
+%% Los puntos se pueden representar por un par de números que son sus 
+%% coordenadas.
+
+%% 22.1 - Cuadrante de un punto.
+%% Definir la función cuadrante tal que (cuadrante p) es el cuadrante del punto 
+%% p (se supone que p no está sobre los ejes). Por ejemplo,
+%%
+%% cuadrante (3,5) == 1
+%% cuadrante (-3,5) == 2
+%% cuadrante (-3,-5) == 3
+%% cuadrante (3,-5) == 4
+
+cuadrante(X, Y) ->
+	if
+		((X > 0) and (Y > 0)) ->
+			1;
+		((X < 0) and (Y > 0)) ->
+			2;
+		((X < 0) and (Y < 0)) ->
+			3;
+		((X > 0) and (Y < 0)) ->
+			4
+	end.
+
+%% 22.2 - Intercambio de coordenadas
+%% Definir la función intercambia tal que (intercambia p) es el punto obtenido
+%% intercambiando las coordenadas del punto p. Por ejemplo,
+%%
+%% intercambia (2,5) == (5,2)
+%% intercambia (5,2) == (2,5)
+
+intercambia(C) ->
+	lists:reverse(C).
+
+%% 22.3 - Punto simétrico
+%% Definir la función simétricoH tal que (simetricoH p) es el punto simétrico 
+%% de p respecto del eje horizontal. Por ejemplo,
+%%
+%% simetricoH (2,5) == (2,-5)
+%% simetricoH (2,-5) == (2,5)
+
+simetricoH([X|Y]) ->
+	[X] ++ lists:map(fun(Z) -> Z * -1 end, Y).
+
+%% 22.4 - Distancia entre dos puntos
+%% Definir la función distancia tal que (distancia p1 p2) es la distancia 
+%% entre los puntos p1 y p2. Por ejemplo,
+%%
+%% distancia (1,2) (4,6) == 5.0
+
+distancia(X1, Y1, X2, Y2) ->
+	math:sqrt(math:pow(X1 - X2, 2) + math:pow(Y1 - Y2, 2)).
+
+%% 22.5 - Punto medio entre otros dos
+%% Definir la función puntoMedio tal que (puntoMedio p1 p2) es el punto medio 
+%% entre los puntos p1 y p2. Por ejemplo,
+%%
+%% puntoMedio (0,2) (0,6) == (0.0,4.0)
+%% puntoMedio (-1,2) (7,6) == (3.0,4.0)
+
+puntoMedio(X1, Y1, X2, Y2) ->
+	[(X1 + X2)/2,(Y1 + Y2)/2].
