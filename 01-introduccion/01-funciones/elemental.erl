@@ -276,3 +276,13 @@ divisionSegura(_, 0) ->
 	9999;
 divisionSegura(X, Y) ->
 	X / Y.
+
+%% 20 - Módulo de un vector.
+%% -----------------------------------------------------------------------------
+%% Definir la función modulo tal que (modulo v) es el módulo del vector v. Por 
+%% ejemplo,
+%%
+%% modulo (3,4) == 5.0
+
+modulo(X, Y) ->
+	math:sqrt(math:pow(X,2) + math:pow(Y, 2)).
