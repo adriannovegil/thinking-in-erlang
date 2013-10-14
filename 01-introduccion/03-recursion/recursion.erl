@@ -185,3 +185,17 @@ elem2(N, [H|T]) ->
 		true -> 
 			elem2(N, T)
 	end.
+
+%% 09 - Último elemento de una lista.
+%% -----------------------------------------------------------------------------
+%% Definir por recursión la función
+%%
+%% last2 :: [a] -> a
+%%
+%% tal que (last xs) es el último elemento de xs. Por ejemplo,
+%%
+%% last2 [2,3,5] == 5
+
+last2([]) -> "Nice try";
+last2([H]) -> H;
+last2([_|T]) -> last2(T).
