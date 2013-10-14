@@ -527,3 +527,30 @@ posiciones2(X, Xs) ->
 densa(Xs) ->
 	[ {X,Y} || {X,Y} <- lists:zip(lists:reverse(
 		lists:seq(0, length(Xs) - 1)), Xs), Y /= 0 ].
+
+%% 17 - Producto cartesiano.
+%% -----------------------------------------------------------------------------
+%% La función
+%%
+%% pares :: [a] -> [b] -> [(a,b)]
+%%
+%% definida por
+%%
+%% pares xs ys = [(x,y) | x <- xs, y <- ys]
+%%
+%% toma como argumento dos listas y devuelve las listas de los pares con el 
+%% primer elemento de la primera lista y el segundo de la segunda. Por ejemplo,
+%%
+%% pares [1..3] [4..6]
+%% [(1,4),(1,5),(1,6),(2,4),(2,5),(2,6),(3,4),(3,5),(3,6)]
+%%
+%% Definir, usando dos listas por comprensión con un generador cada una, la 
+%% función
+%% pares2 :: [a] -> [b] -> [(a,b)]
+%% tal que pares2 sea equivalente a pares.
+%%
+%% Indicación: Utilizar la función concat y encajar una lista por compresión
+%% dentro de la otra.
+
+pares2(Xs, Ys) ->
+	lists:concat([[ {X,Y} || Y <- Ys ] || X <- Xs]).
