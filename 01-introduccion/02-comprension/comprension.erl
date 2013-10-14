@@ -74,3 +74,21 @@ linea(N) ->
 
 triangulo(N) ->
 	[linea(X) || X <- lists:seq(1,N)].
+
+%% 04 - Números perfectos.
+%% -----------------------------------------------------------------------------
+%% Un enetero positivo es perfecto si es igual a la suma de sus factores, 
+%% excluyendo el propio número. Definir por comprensión la función
+%%
+%% perfectos :: Int -> [Int]
+%% 
+%% tal que (perfectos n) es la lista de todos los números perfectos menores
+%% que n. Por ejemplo,
+%% 
+%% perfectos 500 == [6, 28, 496]
+
+factores(N) ->
+	[X || X <- lists:seq(1, N), N rem X == 0 ].
+
+perfectos(N) ->
+	[X || X <- lists:seq(1, N), (lists:sum(factores(X) -- [X]) == X)].
