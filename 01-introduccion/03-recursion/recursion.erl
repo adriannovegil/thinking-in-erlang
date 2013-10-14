@@ -55,3 +55,25 @@ replicate2(N, X) -> [X] ++ replicate2(N - 1, X).
 dobleFactorial(0) -> 1;
 dobleFactorial(1) -> 1;
 dobleFactorial(N) -> N * dobleFactorial(N - 2).
+
+%% 04 - Algoritmo de Euclides del máximo común divisor.
+%% -----------------------------------------------------------------------------
+%% Dados dos números naturales, a y b, es posible calcular su máximo común
+%% divisor mediante el Algoritmo de Euclide. Este algoritmo se puede resumir en
+%% la siguiente fórmula:
+%%
+%%			  | a, 					si b = 0
+%% mcd(a,b) = |
+%%			  | mcd(b, a módulo b), si b > 0
+%%
+%% Definir la función
+%%
+%% mcd :: int -> int -> int
+%%
+%% tal que (mcd a b) es el máximo común divisor de a y b calculado mediante el 
+%% algoritmo de Euclides. Por ejemplo,
+%%
+%% mcd 30 45 == 15
+
+mcd(A,0) -> A;
+mcd(A,B) -> mcd(B, A rem B).
