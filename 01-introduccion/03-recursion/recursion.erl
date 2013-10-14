@@ -226,3 +226,18 @@ concat2([H|T]) -> H ++ concat2(T).
 
 selecciona([H|_], 1) -> H;
 selecciona([_|T], N) -> selecciona(T, N - 1).
+
+%% 12 - Selección de los primeros elementos.
+%% -----------------------------------------------------------------------------
+%% Definir por recursión la función
+%% 
+%% take2 :: int -> [a] -> [a]
+%%
+%% tal que (take2 n xs) es la lista de los n primeros elementos de xs. Por 
+%% ejemplo,
+%%
+%% take2 3 [4..12] == [4,5,6]
+
+take2(0, _) -> [];
+take2(_, []) -> [];
+take2(N, [H|T]) -> [H] ++ take2(N - 1, T).
