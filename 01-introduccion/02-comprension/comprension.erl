@@ -554,3 +554,85 @@ densa(Xs) ->
 
 pares2(Xs, Ys) ->
 	lists:concat([[ {X,Y} || Y <- Ys ] || X <- Xs]).
+
+%% 18 - Consulta de bases de datos.
+%% -----------------------------------------------------------------------------
+%% Las bases de datos sobre actividades de personas pueden representarse 
+%% mediante listas de elementos de la forma (a,b,c,d), donde a es el nombre de 
+%% la persona, b su actividad, c su fecha de nacimiento y d la de su 
+%% fallecimiento. Un ejemplo es la siguiente que usaremos a lo largo de los 
+%% siguientes ejercicios
+%%
+%% personas :: [(Stirng, String, Int, Int)]
+%% personas = [("Cervantes", "Literatura", 1547, 1616),
+%%			   ("Velazquez", "Pintura", 1599, 1660),
+%%			   ("Picasso", "Pintura", 1881, 1973),
+%%			   ("Beethoven", "Musica", 1770, 1823),
+%%			   ("Poincare", "Ciencia", 1854, 1912),
+%%			   ("Quevedo", "Literatura", 1580, 1654),
+%%			   ("Goya", "Pintura", 1746, 1828),
+%%			   ("Einstein", "Ciencia", 1879, 1955),
+%%			   ("Mozart", "Musica", 1756, 1791),
+%%			   ("Botticelli", "Pintura", 1445, 1510),
+%%			   ("Borromini", "Arquitectura", 1599, 1667),
+%%			   ("Bach", "musica", 1685, 1750)]
+
+%% 18.1 - Definir la función nombres tal que (nombres bd) es la lista de los 
+%% nombres de las personas de la base de datos bd. Por ejemplo,
+%%
+%% nombres personas == ["Cervantes", "Velazquez", "Picasso", "Beethoven", 
+%% "Poincare", "Quevedo", "Goya", "Einstein", "Mozart", "Botticelli", 
+%% "Borromini", "Bach"]
+
+getDb() ->
+	[{"Cervantes", "Literatura", 1547, 1616},
+	 {"Velazquez", "Pintura", 1599, 1660},
+	 {"Picasso", "Pintura", 1881, 1973},
+	 {"Beethoven", "Musica", 1770, 1823},
+	 {"Poincare", "Ciencia", 1854, 1912},
+	 {"Quevedo", "Literatura", 1580, 1654},
+	 {"Goya", "Pintura", 1746, 1828},
+	 {"Einstein", "Ciencia", 1879, 1955},
+	 {"Mozart", "Musica", 1756, 1791},
+	 {"Botticelli", "Pintura", 1445, 1510},
+	 {"Borromini", "Arquitectura", 1599, 1667},
+	 {"Bach", "Musica", 1685, 1750}].
+
+nombre() ->
+	[X || {X,_,_,_} <- getDb()].
+
+%% 18.2 Definir la función musicos tal que (musicos bd) es la lista de los 
+%% nombres de los músicos de la base de datos bd. Por ejemplo,
+%%
+%% musicos personas == ["Beethoven", "Mozart", "Bach"]
+
+musicos() ->
+	[X || {X,Y,_,_} <- getDb(), Y == "Musica"].
+
+%% 18.3 - Definir la función selección tal que (seleccion bd m) es la lista de 
+%% los nombres de las personas de la base de datos bd cuya actividad es m. Por
+%% ejemplo,
+%%
+%% selección personas "Pintura" == ["Velazquez", "Picasso", "Goya", 
+%% 								    "Botticelli"]
+
+seleccion(Categoria) ->
+	[X || {X,Y,_,_} <- getDb(), Y == Categoria].
+
+%% 18.4 - Definir, usando el apartado anterior, la función musicos2 tal que
+%% (musicos2 bd) es la lista de los nombres de los músicos de la base de datos 
+%% bd. Por ejemplo,
+%%
+%% musicos2 personas == ["Beethoven", "Mozart", "Bach"]
+
+musicos2() ->
+	seleccion("Musica").
+
+%% 18.5 - Definir la función vivas tal que (vivas bd a) es la lista de los 
+%% nombres de las personas de la base de datos bd que estaban vivas en el año
+%% a. Por ejemplo,
+%%
+%% vivas personas 1600 == ["Cervantes", "Velazquez", "Quevedo", "Borromini"]
+
+vivas(Ano) -> 
+	[X || {X,_,A1,A2} <- getDb(), A1 =< Ano, Ano =< A2].
