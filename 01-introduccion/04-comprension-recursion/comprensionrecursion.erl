@@ -65,3 +65,44 @@ numeroBloquesR(N) -> 2 * N + numeroBloquesR(N - 1).
 
 numeroBloquesC(N) ->
 	lists:sum([2 * X || X <- lists:seq(1,N)]).
+
+%% 3 - Suma de los cuadrados de los impares entre los primeros números
+%% ------------------------------------------------------------------------------------
+%% Definir, por recursión, la función
+%%
+%% sumaCuadradosImparesR :: int -> int
+%%
+%% tal que (sumaCuadradosImparesR n) es la suma de los cuadrados de ĺos números impares
+%% desde 1 hasta n. Por ejemplo,
+%%
+%% sumaCuadradosImparesR 1 == 1
+%% sumaCuadradosImparesR 7 == 84
+%% sumaCuadradosImparesR 4 == 10
+
+sumaCuadradosImparesR(1) -> 1;
+sumaCuadradosImparesR(N) ->
+	if
+		N rem 2 /= 0 ->
+			math:pow(N,2) + sumaCuadradosImparesR(N-1);
+		true ->
+		 	sumaCuadradosImparesR(N-1)
+	end.
+
+%% Definir, por comprensión, la función
+%%
+%% sumaCuadradosImparesC :: int -> int
+%%
+%% tal que (sumaCuadradosImparesC n) es la suma de los cuadrados de los números impares
+%% desde 1 hasta n. Por ejemplo,
+%%
+%% sumaCuadradosImparesC 1 == 1
+%% sumaCuadradosImparesC 7 == 84
+%% sumaCuadradosImparesC 4 == 19
+
+sumaCuadradosImparesC(N) ->
+	lists:sum([math:pow(X,2) || X <- lists:seq(1,N), X rem 2 /= 0]).
+
+%% Otra definición más simples es
+
+sumaCuadradosImparesC2(N) ->
+	lists:sum([math:pow(X,2) || X <- lists:seq(1,N,2)]).
