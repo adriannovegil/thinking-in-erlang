@@ -536,3 +536,36 @@ imparesCuadradosR([H|T]) ->
 		true ->
 			imparesCuadradosR(T)
 	end.
+
+%% 8 - Suma de los cuadrados de los elementos impares
+%% ------------------------------------------------------------------------------------
+
+%% 8.1 - Definir, por comprensión, la función
+%%
+%% sumaCuadradosImparesC :: [int] -> int
+%%
+%% tal que (sumaCuadradosImparesC xs) es la suma de los cuadrados de los números 
+%% impares de la lista xs. Por ejemplo, 
+%%
+%% sumaCuadradosImparesC [1,2,4,3,6] == 10
+
+sumaCuadradosImparesC3(Xs) ->
+	lists:sum([X*X || X <- Xs, X rem 2 =/= 0]).
+
+%% 8.2 - Definir, por recursión, la función
+%%
+%% sumaCuadradosImparesR :: [int] -> int
+%%
+%% tal que (sumaCuadradosImparesR xs) es la suma de los cuadrados de los números 
+%% impares de la lista xs. Por ejemplo,
+%%
+%% sumaCuadradosImparesR [1,2,4,3,6] = 10
+
+sumaCuadradosImparesR2([]) -> 0;
+sumaCuadradosImparesR2([H|T]) ->
+	if
+		H rem 2 =/= 0 ->
+			H*H + sumaCuadradosImparesR2(T);
+		true ->
+			sumaCuadradosImparesR2(T)
+	end.
