@@ -448,4 +448,27 @@ calculo() ->
 	Inicio = 72577,
 	calculoHelper(Inicio, Inicio + 10).
 	
+%% 5 - Cuadrados de los elementos de una lista.
+%% ------------------------------------------------------------------------------------
 
+%% 5.1 - Definir, por comprensión, la función
+%%
+%% cuadradosC :: [int] -> [int]
+%%
+%% tal que (cuadradosC xs) es la lista de los cuadrados de xs. Por ejemplo,
+%%
+%% cuadradosC [1,2,3] == [1,4,9]
+
+cuadradosC(Xs) ->
+	[math:pow(X,2) || X <- Xs].
+
+%% 5.2 - Definir, por recursión, la función
+%%
+%% cuadradosR :: [int] -> [int]
+%%
+%% tal que (cuadradosR xs) es la lista de los cuadrados de xs. Por ejemplo,
+%%
+%% cuadrados [1,2,3] == [1,4,9]
+
+cuadradosR([X]) -> [math:pow(X,2)];
+cuadradosR([H|T]) -> [math:pow(H,2)] ++ cuadradosR(T).
