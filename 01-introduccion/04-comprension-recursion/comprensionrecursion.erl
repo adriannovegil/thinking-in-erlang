@@ -503,3 +503,36 @@ imparesR([H|T]) ->
 		true ->
 			imparesR(T)
 	end.
+
+%% 7 - Cuadrados de los elementos impares
+%% ------------------------------------------------------------------------------------
+
+%% 7.1 - Definir, por comprensión, la función
+%%
+%% imparesCuadradosC :: [int] -> [int]
+%%
+%% tal que (imparesCuadradosC xs) es la lista de los cuadrados de los números impares
+%% de xs. Por ejemplo, 
+%%
+%% imparesCuadradosC [1,2,4,3,6] == [1,9]
+
+imparesCuadradosC(Xs) ->
+	[X*X || X <- Xs, X rem 2 =/= 0].
+
+%% 7.2 - Definir, por recursión, la función
+%%
+%% imparesCuadradosR :: [int] -> [int]
+%%
+%% tal que (imparesCuadradosR xs) es la lista de los cuadrados de los números impares
+%% de xs. Por ejemplo,
+%%
+%% imparesCuadradosR [1,2,4,3,6] == [1,9]
+
+imparesCuadradosR([]) -> [];
+imparesCuadradosR([H|T]) ->
+	if
+		H rem 2 =/= 0 ->
+			[math:pow(H,2)] ++ imparesCuadradosR(T);
+		true ->
+			imparesCuadradosR(T)
+	end.
