@@ -569,3 +569,40 @@ sumaCuadradosImparesR2([H|T]) ->
 		true ->
 			sumaCuadradosImparesR2(T)
 	end.
+
+%% 9 - Intervalo numérico
+%% ------------------------------------------------------------------------------------
+
+%% 9.1 - Definir, usando funciones predefinidas, la función
+%%
+%% entreL :: int -> int -> [int]
+%%
+%% tal que (entreL m n) es la lista de los números entre m y n. Por ejemplo,
+%%
+%% entreL 2 5 == [2,3,4,5]
+
+entreL(N,M) ->
+	if
+		M > N ->
+			lists:seq(N,M);
+		M == N ->
+			[N];
+		true ->
+			[]
+	end.
+
+%% 9.2 - Definir, por recursión, la funicón
+%%
+%% entreR :: int -> int -> [int]
+%%
+%% tal que (entreR m n) es la lista de los números entre m y n. Por ejemplo,
+%%
+%% entreR 2 5 == [2,3,4,5]
+
+entreR(N,M) ->
+	if
+		N < M + 1 ->
+			[N] ++ entreR(N+1,M);
+		true ->
+			[]
+	end.
