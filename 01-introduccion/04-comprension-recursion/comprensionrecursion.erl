@@ -472,3 +472,34 @@ cuadradosC(Xs) ->
 
 cuadradosR([X]) -> [math:pow(X,2)];
 cuadradosR([H|T]) -> [math:pow(H,2)] ++ cuadradosR(T).
+
+%% 6 - Números impares de una lista
+%% ------------------------------------------------------------------------------------
+
+%% 6.1 - Definir, por comprensión, la función
+%%
+%% imparesC :: [int] -> [int]
+%%
+%% tal que (imparesC xs) es la lista de los números impares de xs. Por ejemplo,
+%%
+%% imparesC [1,2,4,3,6] == [1,3]
+
+imparesC(Xs) ->
+	[X || X <- Xs, X rem 2 =/= 0].
+
+%% 6.2 - Definir, por recursión, la función
+%%
+%% imparesR :: [int] -> [int]
+%%
+%% tal que (imparesR xs) es la lista de los números impares de xs. Por ejemplo,
+%%
+%% imparesR [1,2,4,3,6] == [1,3]
+
+imparesR([]) -> [];
+imparesR([H|T]) -> 
+	if
+		H rem 2 =/= 0 ->
+			[H] ++ imparesR(T);
+		true ->
+			imparesR(T)
+	end.
