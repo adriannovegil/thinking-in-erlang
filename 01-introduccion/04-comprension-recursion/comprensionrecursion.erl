@@ -606,3 +606,36 @@ entreR(N,M) ->
 		true ->
 			[]
 	end.
+
+%% 10 - Mitades de los pares
+%% ------------------------------------------------------------------------------------
+
+%% 10.1 - Definir, por comprensión, la función
+%%
+%% mitadParesC :: [int] -> [int]
+%%
+%% tal que (mitadPares xs) es la lista de las mitades de los elementos de xs que son
+%% pares. Por ejemplo,
+%%
+%% mitadParesC [0,2,1,7,8,56,17,18] == [0,1,4,28,9]
+
+mitadParesC(Xs) ->
+	[X div 2 || X <- Xs, X rem 2 == 0].
+
+%% 10.2 - Definir, por recursión, la función
+%%
+%% mitadParesR :: [int] -> [int]
+%%
+%% tal que (mitadParesR xs) es la lista de las mitades de los elementos de xs que son
+%% pares. Por ejemplo,
+%%
+%% mitadParesR [0,2,1,7,8,56,17,18] == [0,1,4,28,9]
+
+mitadParesR([]) -> [];
+mitadParesR([H|T]) ->
+	if
+		H rem 2 == 0 ->
+			[H div 2] ++ mitadParesR(T);
+		true ->
+			mitadParesR(T)
+	end.
