@@ -750,3 +750,22 @@ aproximaPi_helper(N) ->
 aproximaPiR(N) -> 
 	math:sqrt(6 * aproximaPi_helper(N)).
 
+%% 14 - Sustitución de impares por el siguiente par
+%% ------------------------------------------------------------------------------------
+%% Definir por recursión la función
+%%
+%% sustituyeImpar :: [int] -> [int]
+%%
+%% tal que (sustituyeImpar xs) es la lista obtenida sustituyendo cada número impar de
+%% xs por el siguiente número par. Por ejemplo,
+%%
+%% sustituyeImpar [2,5,7,4] == [2,6,8,4]
+
+sustituyeImpar([]) -> [];
+sustituyeImpar([H|T]) -> 
+	if
+		H rem 2 =/= 0 ->
+			[H+1] ++ sustituyeImpar(T);
+		true ->
+			[H] ++ sustituyeImpar(T)
+	end.
