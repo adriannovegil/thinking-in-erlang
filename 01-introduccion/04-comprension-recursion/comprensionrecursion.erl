@@ -769,3 +769,38 @@ sustituyeImpar([H|T]) ->
 		true ->
 			[H] ++ sustituyeImpar(T)
 	end.
+
+%% 15 - La compra de una persona agarrada
+%% ------------------------------------------------------------------------------------
+%% Una persona es tan agarrada que sólo compra cuando le hacen un descuento del 10% y 
+%% el precio (con el descuento) es menor o igual que 199
+
+%% 15.1 - Definir, usando comprensión, la función
+%%
+%% agarradoC :: [float] -> float
+%%
+%% tal que (agarradoC ps) es el precio que tiene que pagar por una compra cuya lista de
+%% precios es ps. Por ejemplo,
+%%
+%% agarradoC [45.00, 199.00, 220.00, 399.00] == 417.59998
+
+agarradoC(Xs) ->
+	lists:sum([X * 0.9 || X <- Xs, (X =< 199) or ((X * 0.9) =< 199)]).
+
+%% 15.2 - Definir, por recursión, la función
+%%
+%% agarradorR :: [float] -> float
+%%
+%% tal que (agarradorR ps) es el precio que tiene que pagar por una compra cuya lista
+%% de precio es ps. Por ejemplo,
+%%
+%% agarradoC [45.00, 199.00, 220.00, 399.00] == 417.59998
+
+agarradoR([]) -> 0;
+agarradoR([H|T]) -> 
+	if
+		(H =< 199) or ((H * 0.9) =< 199) ->
+			H * 0.9 + agarradoR(T);
+		true ->
+			agarradoR(T)
+	end.
