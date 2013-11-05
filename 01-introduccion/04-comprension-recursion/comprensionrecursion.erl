@@ -707,3 +707,46 @@ sumaPositivosR([H|T]) ->
 		true ->
 			sumaPositivosR(T)
 	end.
+
+%% 13 - Aproximación del número pi
+%% ------------------------------------------------------------------------------------
+%% La suma de la serie
+%%   1       1       1       1
+%% ----- + ----- + ----- + ----- + ...
+%%  1^2     2^2     3^2     4^2
+%%
+%% es pi^2/6. Por tanto, pi se puede aproximar mediante la raíz cuadrada de 6 por la 
+%% suma de la serie.
+
+%% 13.1 - Definir, por comprensión, la función
+%%
+%% aproximaPiC :: int -> int
+%%
+%% tal que (aproximaPiC n) es la aproximación de pi obtenida mediante n términos de la
+%% serie. Por ejemplo,
+%%
+%% aproximaPiC 4 == sqrt(6*(1/1^2 + 1/2^2 + 1/3^2 + 1/4^2 + ))
+%%				 == 2.9226129861250305
+%% aproximaPiC 1000 == 3.1406380562059946
+
+aproximaPiC(N) ->
+	math:sqrt(6 * lists:sum([ 1 / (X*X) || X <- lists:seq(1,N)])).
+
+%% 13.2 - Definir, por recursión, la función
+%%
+%% aproximaPiC :: int -> int
+%%
+%% tal que (aproximaPiC n) es la aproximación de pi obtenida mediante n términos de la
+%% serie. Por ejemplo,
+%%
+%% aproximaPiC 4 == sqrt(6*(1/1^2 + 1/2^2 + 1/3^2 + 1/4^2 + ))
+%%				 == 2.9226129861250305
+%% aproximaPiC 1000 == 3.1406380562059946
+
+aproximaPi_helper(0) -> 0;
+aproximaPi_helper(N) ->
+	(1 / (N*N)) + aproximaPi_helper(N - 1).
+
+aproximaPiR(N) -> 
+	math:sqrt(6 * aproximaPi_helper(N)).
+
