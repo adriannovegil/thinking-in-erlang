@@ -639,3 +639,40 @@ mitadParesR([H|T]) ->
 		true ->
 			mitadParesR(T)
 	end.
+
+%% 11 - Pertenencia a un rango
+%% ------------------------------------------------------------------------------------
+
+%% 11.1 - Definir, por comprensión, la función
+%%
+%% enRangoC :: int -> int -> [int] -> [int]
+%%
+%% tal que (enRangoC a b xs) es la lista de los elementos de xs mayores o iguales que
+%% a y menores o iguales que b. Por ejemplo,
+%%
+%% enRangoC 5 10 [1..15] == [5,6,7,8,9,10]
+%% enRangoC 10 5 [1..15] == []
+%% enRangoC 5 5 [1..15] == [5]
+
+enRangoC(A,B,Xs) ->
+	[X || X <- Xs, (X >= A) and (X =< B)].
+
+%% 11.2 - Definir, por recursión, la función
+%%
+%% enRangoR :: int -> int -> [int] -> [int]
+%%
+%% tal que (enRangoR a b xs) es la lista de los elementos de xs mayores o iguales que
+%% a y menores o iguales que b. Por ejemplo,
+%%
+%% enRangoR 5 10 [1..15] == [5,6,7,8,9,10]
+%% enRangoR 10 5 [1..15] == []
+%% enRangoR 5 5 [1..15] == [5]
+
+enRangoR(_,_,[]) -> [];
+enRangoR(A,B,[H|T]) ->
+	if
+		(H >= A) and (H =< B) ->
+			[H] ++ enRangoR(A,B,T);
+		true ->
+			enRangoR(A,B,T)
+	end.
