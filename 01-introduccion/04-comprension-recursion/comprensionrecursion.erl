@@ -676,3 +676,34 @@ enRangoR(A,B,[H|T]) ->
 		true ->
 			enRangoR(A,B,T)
 	end.
+
+%% 12 - Suma de elementos positivos
+%% ------------------------------------------------------------------------------------
+
+%% 12.1 - Definir, por comprensión, la función
+%%
+%% sumaPositivosC :: [int] -> int
+%%
+%% tal que (sumaPositivosC xs) es la suma de los números positivos de xs. Por ejemplo,
+%%
+%% sumaPositivosC [0,1,-3,-2,8,-1,6] == 15
+
+sumaPositivosC(Xs) ->
+	lists:sum([X || X <- Xs, X > 0]).
+
+%% 12.2 - Definir, por recursión, la función
+%%
+%% sumaPositivosR :: [int] -> int
+%%
+%% tal que (sumaPositivosR xs) es la suma de los números positivos de xs. Por ejemplo,
+%%
+%% sumaPositivosR [0,1,-3,-2,8,-1,6] == 15
+
+sumaPositivosR([]) -> 0;
+sumaPositivosR([H|T]) ->
+	if
+		(H > 0) ->
+			H + sumaPositivosR(T);
+		true ->
+			sumaPositivosR(T)
+	end.
